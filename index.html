@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Adaptive Coding Environment</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #f4f6f8;
+        color: #222;
+    }
+
+    header {
+        background: #24292f;
+        color: white;
+        padding: 22px 35px;
+    }
+
+    header h1 {
+        margin-bottom: 6px;
+    }
+
+    header p {
+        color: #c9d1d9;
+    }
+
+    .container {
+        width: 92%;
+        max-width: 1200px;
+        margin: 30px auto;
+    }
+
+    .profile-selector {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+        font-size: 15px;
+    }
+
+    .profile-header {
+        background: #0969da;
+        color: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
+
+    .profile-header h2 {
+        margin-bottom: 8px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+        margin-bottom: 12px;
+        color: #0969da;
+    }
+
+    .card p {
+        line-height: 1.6;
+    }
+
+    .tag {
+        display: inline-block;
+        background: #ddf4ff;
+        color: #0969da;
+        padding: 6px 10px;
+        border-radius: 20px;
+        margin: 4px 3px;
+        font-size: 13px;
+    }
+
+    .adaptation {
+        background: #fff8c5;
+        border-left: 5px solid #d4a72c;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 6px;
+    }
+
+    .recommendation {
+        margin-top: 10px;
+        padding: 12px;
+        background: #dafbe1;
+        border-left: 5px solid #1a7f37;
+        border-radius: 6px;
+    }
+
+    .status {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #dafbe1;
+        color: #1a7f37;
+        border-radius: 20px;
+        font-size: 13px;
+        margin-top: 8px;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 30px;
+        color: #666;
+        font-size: 14px;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Adaptive Coding Environment</h1>
+    <p>User Modeling Prototype Based on Stack Overflow Developer Survey 2025</p>
+</header>
+
+<div class="container">
+
+    <div class="profile-selector">
+        <h2>Select User Profile</h2>
+
+        <select id="profileSelect" onchange="changeProfile()">
+            <option value="cluster0">
+                Cluster 0 - Established AI-Aware Developer
+            </option>
+
+            <option value="cluster1">
+                Cluster 1 - Emerging AI-Curious Developer
+            </option>
+        </select>
+    </div>
+
+    <div class="profile-header">
+        <h2 id="profileName">
+            The Established AI-Aware Developer
+        </h2>
+
+        <p id="profileDescription">
+            Experienced developer with broad technical knowledge and active
+            AI-assisted development.
+        </p>
+
+        <span class="status" id="clusterStatus">
+            Cluster 0
+        </span>
+    </div>
+
+    <div class="grid">
+
+        <!-- Education -->
+        <div class="card">
+            <h3>Education Level</h3>
+
+            <p id="education">
+                Bachelor's / Master's Degree
+            </p>
+
+            <div class="adaptation">
+                <strong>System Adaptation:</strong>
+
+                <p id="educationAdaptation">
+                    Provide advanced explanations and technical learning materials.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Developer Type -->
+        <div class="card">
+            <h3>Developer Type</h3>
+
+            <div id="developerType">
+                <span class="tag">Full-Stack</span>
+                <span class="tag">Back-End</span>
+                <span class="tag">Experienced Developer</span>
+            </div>
+
+            <div class="adaptation">
+                <strong>System Adaptation:</strong>
+
+                <p id="developerAdaptation">
+                    Provide front-end and back-end development examples.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Languages -->
+        <div class="card">
+            <h3>Current Programming Languages</h3>
+
+            <div id="languages">
+                <span class="tag">Python</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">C#</span>
+                <span class="tag">Java</span>
+                <span class="tag">C++</span>
+                <span class="tag">PHP</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">SQL</span>
+            </div>
+
+            <div class="adaptation">
+                <strong>System Adaptation:</strong>
+
+                <p>
+                    Use familiar programming languages in examples and exercises.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Desired Languages -->
+        <div class="card">
+            <h3>Desired Languages</h3>
+
+            <div id="desiredLanguages">
+                <span class="tag">Rust</span>
+                <span class="tag">Go</span>
+                <span class="tag">Kotlin</span>
+            </div>
+
+            <div class="recommendation">
+                <strong>Recommendation:</strong>
+
+                <p id="languageRecommendation">
+                    Recommend Rust, Go, and Kotlin tutorials and coding exercises.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Databases -->
+        <div class="card">
+            <h3>Current Databases</h3>
+
+            <div id="databases">
+                <span class="tag">PostgreSQL</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">SQL Server</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Redis</span>
+                <span class="tag">MariaDB</span>
+            </div>
+
+            <div class="adaptation">
+                <strong>System Adaptation:</strong>
+
+                <p>
+                    Provide advanced database queries and integration tasks.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- AI Usage -->
+        <div class="card">
+            <h3>AI Usage</h3>
+
+            <p id="aiUsage">
+                High AI Usage
+            </p>
+
+            <div class="adaptation">
+                <strong>System Adaptation:</strong>
+
+                <p id="aiAdaptation">
+                    Make AI coding assistance readily available.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- AI Frustration -->
+        <div class="card">
+            <h3>AI Frustration</h3>
+
+            <p id="aiFrustration">
+                High
+            </p>
+
+            <div class="adaptation">
+                <strong>System Adaptation:</strong>
+
+                <p id="frustrationAdaptation">
+                    Provide clearer explanations and simpler AI suggestions.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Human Help -->
+        <div class="card">
+            <h3>Human Help Preference</h3>
+
+            <p id="humanHelp">
+                High preference for human assistance
+            </p>
+
+            <div class="adaptation">
+                <strong>System Adaptation:</strong>
+
+                <p id="humanAdaptation">
+                    Provide documentation, tutorials, and human-support options.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- IDE -->
+        <div class="card">
+            <h3>Development Environments</h3>
+
+            <div id="ides">
+                <span class="tag">VS Code</span>
+                <span class="tag">PyCharm</span>
+                <span class="tag">Visual Studio</span>
+            </div>
+
+            <div class="recommendation">
+                <strong>System Behavior:</strong>
+
+                <p id="ideAdaptation">
+                    Provide advanced development tools and environment suggestions.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Overall Adaptation -->
+        <div class="card">
+            <h3>Adaptive System Behavior</h3>
+
+            <p id="overallAdaptation">
+                The system provides advanced coding assistance, AI tools,
+                technology recommendations, and detailed development resources.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    Adaptive Coding Environment Prototype<br>
+    Based on User Modeling and K-Means Clustering
+</div>
+
+
+<script>
+
+const profiles = {
+
+    cluster0: {
+
+        name: "The Established AI-Aware Developer",
+
+        description:
+        "Experienced developer with broad technical knowledge and active AI-assisted development.",
+
+        cluster: "Cluster 0",
+
+        education:
+        "Bachelor's / Master's Degree",
+
+        educationAdaptation:
+        "Provide advanced explanations, technical tutorials, and detailed learning materials.",
+
+        developer:
+        '<span class="tag">Full-Stack</span><span class="tag">Back-End</span><span class="tag">Experienced Developer</span>',
+
+        developerAdaptation:
+        "Provide front-end, back-end, API, server, and advanced development examples.",
+
+        languages:
+        '<span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">C#</span><span class="tag">Java</span><span class="tag">C++</span><span class="tag">PHP</span><span class="tag">TypeScript</span><span class="tag">SQL</span>',
+
+        desiredLanguages:
+        '<span class="tag">Rust</span><span class="tag">Go</span><span class="tag">Kotlin</span>',
+
+        languageRecommendation:
+        "Recommend advanced tutorials and coding projects involving Rust, Go, and Kotlin.",
+
+        databases:
+        '<span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">SQL Server</span><span class="tag">SQLite</span><span class="tag">MongoDB</span><span class="tag">Redis</span><span class="tag">MariaDB</span>',
+
+        aiUsage:
+        "High AI Usage",
+
+        aiAdaptation:
+        "Make AI coding assistance readily available.",
+
+        aiFrustration:
+        "High",
+
+        frustrationAdaptation:
+        "Provide clearer explanations, simpler suggestions, and step-by-step solutions.",
+
+        humanHelp:
+        "High preference for human assistance",
+
+        humanAdaptation:
+        "Provide documentation, tutorials, collaboration options, and human-support resources.",
+
+        ides:
+        '<span class="tag">VS Code</span><span class="tag">PyCharm</span><span class="tag">Visual Studio</span>',
+
+        ideAdaptation:
+        "Provide advanced development tools and environment suggestions.",
+
+        overall:
+        "The system provides advanced coding assistance, AI tools, technology recommendations, database tasks, and detailed development resources."
+    },
+
+
+    cluster1: {
+
+        name: "The Emerging AI-Curious Developer",
+
+        description:
+        "Newer or less specialized developer with lower overall technology and AI-tool usage.",
+
+        cluster: "Cluster 1",
+
+        education:
+        "Primary / Secondary / Early Higher Education",
+
+        educationAdaptation:
+        "Provide simple explanations, guided examples, beginner tutorials, and step-by-step learning materials.",
+
+        developer:
+        '<span class="tag">Student</span><span class="tag">Junior Developer</span>',
+
+        developerAdaptation:
+        "Provide guided coding examples, beginner-friendly projects, and learning resources.",
+
+        languages:
+        '<span class="tag">Python</span><span class="tag">JavaScript</span>',
+
+        desiredLanguages:
+        '<span class="tag">Java</span><span class="tag">TypeScript</span>',
+
+        languageRecommendation:
+        "Recommend beginner-friendly tutorials and coding exercises for Java and TypeScript.",
+
+        databases:
+        '<span class="tag">MySQL</span><span class="tag">SQLite</span>',
+
+        aiUsage:
+        "Low / Occasional AI Usage",
+
+        aiAdaptation:
+        "Keep AI assistance available but make it less prominent.",
+
+        aiFrustration:
+        "Low / Limited AI Interaction",
+
+        frustrationAdaptation:
+        "Provide direct and simple AI assistance without overwhelming the user.",
+
+        humanHelp:
+        "Lower preference for human assistance",
+
+        humanAdaptation:
+        "Emphasize self-guided tutorials, documentation, and AI-assisted solutions.",
+
+        ides:
+        '<span class="tag">VS Code</span>',
+
+        ideAdaptation:
+        "Provide simple development environment guidance and setup instructions.",
+
+        overall:
+        "The system provides guided examples, beginner-friendly explanations, simple AI assistance, and learning resources based on the user's current experience."
+    }
+
+};
+
+
+function changeProfile() {
+
+    const selected =
+        document.getElementById("profileSelect").value;
+
+    const profile = profiles[selected];
+
+
+    document.getElementById("profileName").textContent =
+        profile.name;
+
+    document.getElementById("profileDescription").textContent =
+        profile.description;
+
+    document.getElementById("clusterStatus").textContent =
+        profile.cluster;
+
+    document.getElementById("education").textContent =
+        profile.education;
+
+    document.getElementById("educationAdaptation").textContent =
+        profile.educationAdaptation;
+
+    document.getElementById("developerType").innerHTML =
+        profile.developer;
+
+    document.getElementById("developerAdaptation").textContent =
+        profile.developerAdaptation;
+
+    document.getElementById("languages").innerHTML =
+        profile.languages;
+
+    document.getElementById("desiredLanguages").innerHTML =
+        profile.desiredLanguages;
+
+    document.getElementById("languageRecommendation").textContent =
+        profile.languageRecommendation;
+
+    document.getElementById("databases").innerHTML =
+        profile.databases;
+
+    document.getElementById("aiUsage").textContent =
+        profile.aiUsage;
+
+    document.getElementById("aiAdaptation").textContent =
+        profile.aiAdaptation;
+
+    document.getElementById("aiFrustration").textContent =
+        profile.aiFrustration;
+
+    document.getElementById("frustrationAdaptation").textContent =
+        profile.frustrationAdaptation;
+
+    document.getElementById("humanHelp").textContent =
+        profile.humanHelp;
+
+    document.getElementById("humanAdaptation").textContent =
+        profile.humanAdaptation;
+
+    document.getElementById("ides").innerHTML =
+        profile.ides;
+
+    document.getElementById("ideAdaptation").textContent =
+        profile.ideAdaptation;
+
+    document.getElementById("overallAdaptation").textContent =
+        profile.overall;
+}
+
+</script>
+
+</body>
+</html>
